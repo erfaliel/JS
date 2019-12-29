@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='fr'>
+    <head>
+        <meta charset='utf-8'>
+        <style>
+            .error {
+                background: #f99;
+                border: #900 1px solid;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <form id='hero'>
+            <label for='heroName'>Name: </label>
+            <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+            <button type='submit' id='submit' disabled>Submit</button>
+            <label for='realName'>Real Name: </label>
+            <input type='password' id='realName' name='realName'>
+            <p>Super Powers:</p>
+            <label for='flight'>Flight: </label>
+            <input type='checkbox' id='flight' value='Flight' name='powers' checked>
+            <label for='strength'>Super Strength: </label>
+            <input type='checkbox' id='strength' value='Strength' name='powers'>
+            <label for='speed'>Super Speed: </label>
+            <input type='checkbox' id='speed' value='Super Speed' name='powers'>
+            <label for='energy'>Energy Blasts: </label>
+            <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+            <label for='telekinesis'>Telekinesis: </label>
+            <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
+            <p>What type of hero are you ?<br /></p>
+            <label for='hero'>Hero:</label>
+            <input type="radio" name="category" value="Hero" id="hero">
+            <label for="vilain">Vilain:</label>
+            <input type="radio" name="category" value="Vilain" id="vilain">
+            <label for="anti-hero">Anti-Hero:</label>
+            <input type="radio" name="category" value="Antihero" id="anti-hero" checked>
+            <label for="age">Age:</label>
+            <input type="number" id="age" min=0 step=1>
+            <label for="city">Base of Operations:</label>
+            <select name="city" id="city">
+                <option value="" selected>Choose a City</option>
+                <option value="Metropolis">Metropolis</option>
+                <option value="Gotam City">Gotham City</option>
+                <option value="Keystone City">Keystone City</option>
+                <option value="Coast City" >Coast City</option>
+                <option value="Star City">Star City</option>
+            </select>
+           <label for="origin">Origin Story:</label>
+           <textarea id="origin" name="origin" rows="20" cols="60">Example: Borm as Kal-el on the planet Krypton...</textarea>
+        </form>
+
+        <script src='main.js'></script>
+    </body>
+</html>
