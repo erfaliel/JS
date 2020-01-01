@@ -12,6 +12,7 @@ const view = {
     info: document.getElementById('info'),
     response: document.querySelector("#response"),
     start: document.getElementById('start'),
+    timer: document.querySelector('#timer strong'),
 
     render(target, content, attributes) {
         for (const key in attributes) {
@@ -51,6 +52,8 @@ const game = {
     start(quizz) {
         this.score = 0; //initialize score
         this.questions = [...quizz]; // input from obtect quizz
+        this.secondsRemaining = 20;
+        this.timer = setInterval(this.countdown, 1000);
         view.setup();
         this.ask();
     }, // "," to separate methods and attributes
@@ -83,8 +86,17 @@ const game = {
 
         // function gameOver
     gameOver() {
-        view.render(view.info, `Game Over, you scored ${this.score}`);
+        view.render(view.info, `Game Over, you scored ${this.score} point${this.score !==1 ? 's' : ''}`);
         view.teardown();
+        clearInterval(this.timer);
+    },
+        // function countdown why I cannot use this here!
+    countdown() {
+        game.secondsRemaining--;
+        view.render(view.timer, game.secondsRemaining);
+        if (game.secondsRemaining < 0) {
+            game.gameOver();
+        }
     }
 
 
