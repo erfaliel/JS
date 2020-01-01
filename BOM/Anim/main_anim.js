@@ -9,4 +9,5 @@ function rotate() {
 const id = requestAnimationFrame(rotate); // call rotate function recursively.
 // you cannot set frame rate, it's automaticly set for the device.
 // when you change to another browser's tab, function is stopped.
+//cancelAnimationFrame(id); to stop
 

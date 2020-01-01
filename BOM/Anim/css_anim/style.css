@@ -1,0 +1,11 @@
+#square {
+    margin: 100px;
+    width: 100px;
+    height: 100px;
+    background: #cc0;
+    animation: spin 15s linear infinite;
+}
+
+@keyframes spin { from { transform:rotate(0deg);} to {transform:rotate(3600deg);}}
+/* ref: https://developer.mozilla.org/fr/docs/Web/CSS/Animations_CSS/Utiliser_les_animations_CSS */
+/* learn with : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297084-les-animations-css */
