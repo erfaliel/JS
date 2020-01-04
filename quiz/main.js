@@ -50,6 +50,7 @@ const view = {
 };
 const game = {
     start(quizz) {
+        console.log('start() invoked');
         this.score = 0; //initialize score
         this.questions = [...quizz]; // input from obtect quizz
         this.secondsRemaining = 20;
@@ -58,6 +59,7 @@ const game = {
         this.ask();
     }, // "," to separate methods and attributes
     ask() {
+        console.log('ask() invoked');
         if (this.questions.length > 0) {
             this.question = this.questions.pop();
             const question = `What is ${this.question.name}'s real name?`;
@@ -69,6 +71,7 @@ const game = {
 
         // function to control answer vs response
     check(e) {
+        console.log('check(event) invoked');
         event.preventDefault();
         const response = view.response.answer.value;
         const answer = this.question.real_name;
@@ -86,6 +89,7 @@ const game = {
 
         // function gameOver
     gameOver() {
+        console.log('gameOver() invoked');
         view.render(view.info, `Game Over, you scored ${this.score} point${this.score !==1 ? 's' : ''}`);
         view.teardown();
         clearInterval(this.timer);
@@ -94,7 +98,8 @@ const game = {
     countdown() {
         game.secondsRemaining--;
         view.render(view.timer, game.secondsRemaining);
-        if (game.secondsRemaining < 0) {
+        if (game.secondsRemaining <= 0) {
+            console.log("coundown() -->  0 invoked");
             game.gameOver();
         }
     }
