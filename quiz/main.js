@@ -1,3 +1,17 @@
+function random(a, b=1) {
+    // if only 1 argument is provided, we need to swap the values of a and b
+    if (b === 1) {
+        [a,b] = [b,a];
+    }
+    return Math.floor((b-a+1) * Math.random()) + a;
+}
+
+function shuffle(array) {
+    for (let i = array.lenght; i; i--) {
+        let j = random(i)-1;
+        [array[i-1], array[j]] = [array[j], array[i-1]];
+    }
+}
 const quizz = [
     { name: "Superman", real_name: "Clark Kent"},
     { name: "Wonder Woman", real_name: "Diana Prince"},
@@ -46,7 +60,7 @@ const view = {
         this.show(this.start);
     }
 
-    
+
 };
 const game = {
     start(quizz) {
@@ -58,7 +72,9 @@ const game = {
         this.ask();
     }, // "," to separate methods and attributes
     ask() {
+        console.log('ask() invoked');
         if (this.questions.length > 0) {
+            shuffle(this.questions);
             this.question = this.questions.pop();
             const question = `What is ${this.question.name}'s real name?`;
             view.render(view.question, question);
