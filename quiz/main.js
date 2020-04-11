@@ -76,6 +76,7 @@ const game = {
         if (this.questions.length > 0) {
             shuffle(this.questions);
             this.question = this.questions.pop();
+            console.log("Question is : ", this.question);
             const question = `What is ${this.question.name}'s real name?`;
             view.render(view.question, question);
         } else {
