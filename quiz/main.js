@@ -7,7 +7,7 @@ function random(a, b=1) {
 }
 
 function shuffle(array) {
-    for (let i = array.lenght; i; i--) {
+    for (let i = array.length; i; i--) {
         let j = random(i)-1;
         [array[i-1], array[j]] = [array[j], array[i-1]];
     }
@@ -77,6 +77,7 @@ const game = {
         if (this.questions.length > 2) {
             shuffle(this.questions);
             this.question = this.questions.pop();
+            console.log("question is", this.question);
             const options = [this.questions[0].realName, this.questions[1].realName, this.question.realName];
             shuffle(options);
             const question = `What is ${this.question.name}'s real name?`;
@@ -91,7 +92,8 @@ const game = {
     check(e) {
         console.log('check(event) invoked');
         const response = e.target.textContent;
-        const answer = this.question.real_name;
+        console.log("target response is : ", response)
+        const answer = this.question.realName;
             if (response === answer) {
                 view.render(view.result,'Correct !', {'class': 'correct'})
                 this.score++;
