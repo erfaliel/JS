@@ -9,8 +9,8 @@ const headers = new Headers({           //headers interface
 });
 
 // Event handlers
-form.addEventListener('submit', addTask, false);
-function addTask(e) {
+
+const addTask = (e) => {
     e.preventDefault();
     //console.debug('headers : ', headers);
     // Design of the task object
@@ -23,8 +23,9 @@ function addTask(e) {
     const request = buildRequest(task);
     fetchRequest(request); // fetch the request we have just built
 }
+form.addEventListener('submit', addTask, false);// in this way we need to call function after the declaration.
 // Functions design
-function buildRequest(task) {
+const buildRequest = (task) => {
     const data = JSON.stringify(task); // JS object is turned into a json
     const request = new Request(url,        // request interface
         {
@@ -36,7 +37,7 @@ function buildRequest(task) {
     return request;
 }
 
-function fetchRequest(request) {
+const fetchRequest = (request) => {
     fetch(request)
     .then( response => response.json() )
     .then( task => console.log(`Task saved with an id of ${task.id}`) )
