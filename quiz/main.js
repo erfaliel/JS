@@ -7,15 +7,18 @@ function random(a, b=1) {
 }
 
 function shuffle(array) {
-    for (let i = array.lenght; i; i--) {
+    for (let i = array.length; i; i--) {
         let j = random(i)-1;
         [array[i-1], array[j]] = [array[j], array[i-1]];
     }
 }
 const quizz = [
-    { name: "Superman", real_name: "Clark Kent"},
-    { name: "Wonder Woman", real_name: "Diana Prince"},
-    { name: "Batman", real_name: "Bruce Wayne"}
+    { name: "Superman", realName: "Clark Kent"},
+    { name: "Wonder Woman", realName: "Diana Prince"},
+    { name: "Batman", realName: "Bruce Wayne"},
+    { name: "Spider_man", realName: "Peter Parker"},
+    { name: "The Hulk", realName: "Bruce Banner"},
+    { name: "Cyclops", realName: "Scott Summers"}
 ];
 
 // view object
@@ -48,16 +51,14 @@ const view = {
         this.render(this.score,game.score);
         this.render(this.result,'');
         this.render(this.info,'');
-        this.resetForm();
     },
-    resetForm() {
-        this.response.answer.value = '';
-        this.response.answer.focus();
-    },
-    teardown() {
+   teardown() {
         this.hide(this.question);
         this.hide(this.response);
         this.show(this.start);
+    },
+    buttons(array){
+        return array.map(value => `<button>${value}</button>`).join(' ');
     }
 
 
@@ -73,12 +74,15 @@ const game = {
     }, // "," to separate methods and attributes
     ask() {
         console.log('ask() invoked');
-        if (this.questions.length > 0) {
+        if (this.questions.length > 2) {
             shuffle(this.questions);
             this.question = this.questions.pop();
-            console.log("Question is : ", this.question);
+            console.log("question is", this.question);
+            const options = [this.questions[0].realName, this.questions[1].realName, this.question.realName];
+            shuffle(options);
             const question = `What is ${this.question.name}'s real name?`;
             view.render(view.question, question);
+            view.render(view.response, view.buttons(options));
         } else {
             this.gameOver();
         }
@@ -86,9 +90,10 @@ const game = {
 
         // function to control answer vs response
     check(e) {
-        event.preventDefault();
-        const response = view.response.answer.value;
-        const answer = this.question.real_name;
+        console.log('check(event) invoked');
+        const response = e.target.textContent;
+        console.log("target response is : ", response)
+        const answer = this.question.realName;
             if (response === answer) {
                 view.render(view.result,'Correct !', {'class': 'correct'})
                 this.score++;
@@ -96,9 +101,7 @@ const game = {
             } else {
                 view.render(view.result, `Wrong! The correct answer was ${answer}`, {'class' : 'wrong'})
             }
-            view.resetForm();
             this.ask();
-
     },
 
         // function gameOver
@@ -120,6 +123,4 @@ const game = {
 };
 // Event listener
 view.start.addEventListener('click', () => game.start(quizz), false);
-view.response.addEventListener("submit", (e) => game.check(e), false);
-//view.hide(view.response);
-
+view.response.addEventListener('click', (e) => game.check(e), false);
