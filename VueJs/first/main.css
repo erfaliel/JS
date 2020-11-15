@@ -1,0 +1,54 @@
+p {
+    font-family: cursive;
+    font-size: 20px;
+    color: cadetblue;
+} 
+
+div {
+    background-color: darkkhaki;
+    width: 300px;
+    border-radius: 8px;
+    padding: 50px;
+    margin: 20px;
+  }
+#app7 {
+    background-color: rgb(231, 162, 219);
+    width: 300px;
+    border-width: 5px;
+    border-radius: 8px;
+    padding: 50px;
+    margin: 20px;
+}
+
+ul.a {
+    list-style-type: circle;
+}
+button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+ }
+/* modifie le pointeur au survol du bouton */
+/*
+
+button:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+ }
+*/
+button:hover {
+    padding-right: 45px;
+}
